@@ -1,0 +1,87 @@
+body {
+    margin: 0;
+}
+
+/* Sidebar styles */
+.sidebar {
+    /* background-color is now handled by Bootstrap's bg-primary class */
+    /* Removed explicit width as Bootstrap's col-md-3 handles it */
+    color: white;
+    padding: 0; /* Adjust padding as per new design */
+    /* display: flex; Removed as Bootstrap handles flex */
+    /* flex-direction: column; Removed as Bootstrap handles flex */
+    height: 100vh; /* Ensure sidebar takes full height */
+    position: fixed; /* Fix sidebar position */
+    top: 0;
+    left: 0;
+    width: 250px; /* Explicitly define sidebar width */
+    z-index: 1030; /* Ensure sidebar is above other content (Bootstrap default for navbar is 1030) */
+}
+
+/* Adjust main content when sidebar is open on small screens */
+@media (max-width: 767.98px) {
+    .sidebar {
+        height: 100%; /* Adjust height for mobile */
+    }
+    .sidebar.collapse.show ~ main {
+        /* Remove margin-left and width adjustments to allow sidebar to overlay */
+        margin-left: 0;
+        width: 100%;
+    }
+}
+
+.sidebar .nav-link {
+    color: white;
+    padding: 10px 15px;
+    text-decoration: none;
+    display: block;
+    border-radius: 0;
+    margin-bottom: 0;
+}
+.sidebar .nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+.sidebar .nav-link.active {
+    background-color: rgba(0, 0, 0, 0.2); /* Darker background for active link */
+    border-left: 3px solid #fff; /* White line on the left for active link */
+    padding-left: 12px; /* Adjust padding due to border */
+}
+
+/* Navbar styles */
+.navbar {
+    /* background-color and border-bottom are now handled by Bootstrap classes */
+    padding: 0.5rem 1rem; /* Adjust padding */
+    /* display, justify-content, align-items are handled by Bootstrap */
+    z-index: 1020; /* Ensure navbar is below sidebar when sidebar is open on small screens */
+}
+
+/* Responsive adjustments for medium screens and up */
+@media (min-width: 768px) {
+    .navbar {
+        margin-left: 250px; /* Offset for fixed sidebar */
+        width: calc(100% - 250px); /* Adjust width to not overlap with sidebar */
+    }
+
+    main {
+        margin-left: 250px; /* Width of the sidebar */
+        width: calc(100% - 250px); /* Adjust width for sidebar */
+    }
+
+    .footer {
+        margin-left: 250px; /* Offset for fixed sidebar */
+        width: calc(100% - 250px); /* Adjust width to not overlap with sidebar */
+    }
+}
+
+/* Main content general adjustments */
+main {
+    margin-top: 56px; /* Height of the navbar (approx) */
+    position: relative; /* Ensure z-index works */
+    z-index: 1000; /* Place main content above other elements if needed */
+}
+
+.table-actions {
+    display: inline-flex; /* Use inline-flex to allow wrapping within text flow */
+    flex-wrap: wrap; /* Allow buttons to wrap to the next line */
+    gap: 5px;
+}
